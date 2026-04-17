@@ -10,27 +10,9 @@ function useHydrated() {
 }
 
 const cats = [
-  {
-    title: '連結',
-    sub: '音がくっつく',
-    example: 'check it out → チェキラウ',
-    color: '#0483F0',
-    bg: 'linear-gradient(135deg, #E8F4FD 0%, #D0E8FA 100%)',
-  },
-  {
-    title: '脱落',
-    sub: '音が消える',
-    example: 'good morning → グッモーニン',
-    color: '#F97316',
-    bg: 'linear-gradient(135deg, #FFF3E8 0%, #FFE4CC 100%)',
-  },
-  {
-    title: '弱形',
-    sub: '音が弱くなる',
-    example: 'want to → ワナ',
-    color: '#8B5CF6',
-    bg: 'linear-gradient(135deg, #F3EEFF 0%, #E8DEFF 100%)',
-  },
+  { title: '連結', sub: '音がくっつく', example: 'check it out → チェキラウ' },
+  { title: '脱落', sub: '音が消える', example: 'good morning → グッモーニン' },
+  { title: '弱形', sub: '音が弱くなる', example: 'want to → ワナ' },
 ];
 
 export default function IntroPage() {
@@ -42,7 +24,7 @@ export default function IntroPage() {
   if (isCompleted()) {
     return (
       <div className="flex flex-col items-center justify-center min-h-dvh px-6 bg-[#FAFBFC]">
-        <div className="w-16 h-16 rounded-full flex items-center justify-center mb-5" style={{ background: 'linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)' }}>
+        <div className="w-16 h-16 rounded-full bg-[#E8FAF0] flex items-center justify-center mb-5">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12" />
           </svg>
@@ -62,20 +44,19 @@ export default function IntroPage() {
 
   return (
     <div className="flex flex-col min-h-dvh bg-white">
-      {/* Hero */}
       <div
         className="px-6 pt-16 pb-12"
         style={{ background: 'linear-gradient(180deg, #042132 0%, #0A3350 100%)' }}
       >
         <div className="animate-fade-in">
           <div className="flex items-center gap-2 mb-5">
-            <div className="w-2 h-2 rounded-full bg-[#48DE82]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#48DE82]" />
             <span className="text-[#48DE82] text-[11px] font-bold tracking-[0.12em]">リスニング診断</span>
           </div>
           <h1 className="text-[26px] font-black leading-[1.5] text-white mb-4">
             英語が聞き取れない
             <br />
-            <span style={{ color: '#48DE82' }}>本当の原因</span>を
+            <span className="text-[#48DE82]">本当の原因</span>を
             <br />
             3分で診断
           </h1>
@@ -87,39 +68,34 @@ export default function IntroPage() {
         </div>
       </div>
 
-      {/* Category Cards */}
       <div className="flex-1 px-5 -mt-6 relative z-10">
-        <div className="space-y-3 mb-5">
+        <div className="bg-white rounded-2xl border border-[#E8ECF0] overflow-hidden mb-5" style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
           {cats.map((c, i) => (
             <div
               key={c.title}
-              className="animate-slide-up rounded-2xl p-4 flex items-start gap-4"
-              style={{ animationDelay: `${(i + 1) * 80}ms`, background: c.bg }}
+              className={`animate-slide-up flex items-start gap-4 px-5 py-4 ${i < cats.length - 1 ? 'border-b border-[#F0F2F4]' : ''}`}
+              style={{ animationDelay: `${(i + 1) * 80}ms` }}
             >
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
-                style={{ backgroundColor: c.color, boxShadow: `0 4px 12px ${c.color}30` }}
-              >
-                <span className="text-white text-[13px] font-extrabold">{i + 1}</span>
+              <div className="w-8 h-8 rounded-lg bg-[#042132] flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-white text-[12px] font-extrabold">{i + 1}</span>
               </div>
               <div className="flex-1">
                 <p className="font-extrabold text-[15px] text-[#042132]">
                   {c.title}
-                  <span className="font-semibold text-[12px] text-[#6B7B8D] ml-2">{c.sub}</span>
+                  <span className="font-medium text-[12px] text-[#8494A7] ml-2">{c.sub}</span>
                 </p>
-                <p className="text-[13px] text-[#5A6B7D] mt-1 leading-relaxed">{c.example}</p>
+                <p className="text-[13px] text-[#6B7B8D] mt-0.5">{c.example}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Info */}
         <div
-          className="animate-slide-up flex items-center gap-3 p-4 rounded-2xl border border-[#E8ECF0] bg-white"
+          className="animate-slide-up flex items-center gap-3 p-4 rounded-2xl bg-[#F4F6F8]"
           style={{ animationDelay: '350ms' }}
         >
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg, #042132 0%, #0A3350 100%)' }}>
-            <span className="text-[#48DE82] text-[13px] font-extrabold">10</span>
+          <div className="w-9 h-9 rounded-lg bg-[#042132] flex items-center justify-center shrink-0">
+            <span className="text-[#48DE82] text-[12px] font-extrabold">10</span>
           </div>
           <div>
             <p className="text-[14px] font-bold text-[#042132]">10問のクイズ</p>
@@ -128,7 +104,6 @@ export default function IntroPage() {
         </div>
       </div>
 
-      {/* CTA */}
       <div className="px-5 pt-4 pb-8">
         <button
           onClick={() => router.push('/quiz')}
