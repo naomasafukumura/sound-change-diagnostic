@@ -5,10 +5,9 @@ import { startRecording, transcribeAudio } from '../lib/audio';
 
 interface VoiceRecorderProps {
   expectedSentence: string;
-  onComplete?: (transcript: string) => void;
 }
 
-export function VoiceRecorder({ expectedSentence, onComplete }: VoiceRecorderProps) {
+export function VoiceRecorder({ expectedSentence }: VoiceRecorderProps) {
   const [state, setState] = useState<'idle' | 'recording' | 'processing' | 'done'>('idle');
   const [recorder, setRecorder] = useState<{ stop: () => Promise<Blob> } | null>(null);
   const [transcript, setTranscript] = useState('');
@@ -33,51 +32,58 @@ export function VoiceRecorder({ expectedSentence, onComplete }: VoiceRecorderPro
       const text = await transcribeAudio(blob);
       setTranscript(text);
       setState('done');
-      onComplete?.(text);
     } catch {
-      setError('音声の処理に失敗しました。もう一度お試しください。');
+      setError('音声の処理に失敗しました');
       setState('idle');
     }
   };
 
   if (state === 'done') {
     return (
-      <div className="mt-4 p-4 bg-slate-50 rounded-xl">
-        <p className="text-sm text-slate-500 mb-1">あなたの発音:</p>
-        <p className="text-lg font-medium">{transcript}</p>
-        <p className="text-sm text-slate-500 mt-2">お手本:</p>
-        <p className="text-lg">{expectedSentence}</p>
+      <div className="animate-fade-in rounded-2xl border border-[#e2e8f0] overflow-hidden">
+        <div className="px-4 py-3 bg-[#f8f9fb]">
+          <p className="text-xs text-[#94a3b8] mb-1">あなたの発音</p>
+          <p className="font-medium">{transcript}</p>
+        </div>
+        <div className="px-4 py-3">
+          <p className="text-xs text-[#94a3b8] mb-1">お手本</p>
+          <p className="font-medium">{expectedSentence}</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="mt-4">
-      <p className="text-sm text-slate-500 mb-3">自分でも言ってみよう</p>
-      {error && <p className="text-sm text-red-600 mb-2">{error}</p>}
+    <div>
+      <p className="text-xs font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Try it yourself</p>
+      {error && <p className="text-xs text-red-500 mb-2">{error}</p>}
       {state === 'recording' ? (
         <button
           onClick={handleStop}
-          className="flex items-center justify-center gap-2 w-full py-3 px-6 bg-red-600 text-white rounded-2xl font-medium animate-pulse"
+          className="flex items-center justify-center gap-2 w-full py-3 bg-red-500 text-white rounded-2xl font-bold active:scale-[0.98] transition-transform"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-            <rect x="4" y="4" width="12" height="12" rx="2" />
-          </svg>
-          録音を停止
+          <span className="w-2.5 h-2.5 rounded-full bg-white animate-rec" />
+          タップして停止
         </button>
       ) : state === 'processing' ? (
-        <div className="text-center py-3 text-slate-500">判定中...</div>
+        <div className="flex items-center justify-center gap-2 py-3 text-[#94a3b8] text-sm">
+          <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.3" />
+            <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+          判定中...
+        </div>
       ) : (
         <button
           onClick={handleStart}
-          className="flex items-center justify-center gap-2 w-full py-3 px-6 border-2 border-blue-500 text-blue-500 rounded-2xl font-medium active:scale-95 transition-transform"
+          className="flex items-center justify-center gap-2 w-full py-3 border-2 border-dashed border-[#cbd5e1] text-[#64748b] rounded-2xl font-medium active:scale-[0.98] transition-transform hover:border-[#3b82f6] hover:text-[#3b82f6]"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M10 1a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-            <path d="M5 9a5 5 0 0 0 10 0h-2a3 3 0 0 1-6 0H5z" />
-            <rect x="9" y="15" width="2" height="3" rx="1" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1a4 4 0 0 0-4 4v7a4 4 0 0 0 8 0V5a4 4 0 0 0-4-4z" />
+            <path d="M6 10a6 6 0 0 0 12 0h-2a4 4 0 0 1-8 0H6z" />
+            <rect x="11" y="18" width="2" height="4" rx="1" />
           </svg>
-          録音する
+          自分でも言ってみる
         </button>
       )}
     </div>
