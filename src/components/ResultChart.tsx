@@ -6,31 +6,31 @@ interface ResultChartProps {
   scores: Record<SoundChangeCategory, CategoryScore>;
 }
 
-const config: { key: SoundChangeCategory; label: string; color: string }[] = [
-  { key: 'linking', label: '連結', color: '#3b82f6' },
-  { key: 'elision', label: '脱落', color: '#f97316' },
-  { key: 'weakForm', label: '弱形', color: '#8b5cf6' },
+const config: { key: SoundChangeCategory; label: string; sub: string; color: string }[] = [
+  { key: 'linking', label: '連結', sub: 'Linking', color: '#0483F0' },
+  { key: 'elision', label: '脱落', sub: 'Elision', color: '#F0844C' },
+  { key: 'weakForm', label: '弱形', sub: 'Weak Form', color: '#8B5CF6' },
 ];
 
 export function ResultChart({ scores }: ResultChartProps) {
   return (
     <div className="space-y-4">
-      {config.map(({ key, label, color }) => {
+      {config.map(({ key, label, sub, color }) => {
         const s = scores[key];
         const pct = s.total > 0 ? (s.correct / s.total) * 100 : 0;
 
         return (
           <div key={key}>
-            <div className="flex justify-between items-baseline mb-1.5">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
-                <span className="font-bold text-sm">{label}</span>
+            <div className="flex justify-between items-baseline mb-2">
+              <div className="flex items-baseline gap-2">
+                <span className="font-extrabold text-[15px]">{label}</span>
+                <span className="text-[11px] font-semibold text-[#8FA3B8]">{sub}</span>
               </div>
-              <span className="text-2xl font-black tabular-nums" style={{ color }}>
-                {s.correct}<span className="text-sm font-medium text-[#94a3b8]">/{s.total}</span>
+              <span className="text-xl font-extrabold tabular-nums" style={{ color }}>
+                {s.correct}<span className="text-sm font-semibold text-[#8FA3B8]">/{s.total}</span>
               </span>
             </div>
-            <div className="w-full h-3 bg-[#f1f5f9] rounded-full overflow-hidden">
+            <div className="w-full h-2.5 bg-[#EEF0F3] rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${pct}%`, backgroundColor: color }}

@@ -18,12 +18,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#f8f9fb] text-[#0f172a] antialiased" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>
-        <main className="min-h-dvh max-w-[430px] mx-auto bg-white shadow-sm">
+      <body
+        className="bg-[#f0f2f5] antialiased"
+        style={{ fontFamily: "'Nunito', 'Noto Sans JP', sans-serif", color: '#042132' }}
+      >
+        <main className="min-h-dvh max-w-[430px] mx-auto bg-white">
           {children}
         </main>
       </body>
