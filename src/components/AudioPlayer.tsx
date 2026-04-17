@@ -28,11 +28,15 @@ export function AudioPlayer({ src, label = 'もう一度聞く', size = 'lg' }: 
       <button
         onClick={play}
         disabled={isPlaying}
-        className={`flex items-center justify-center gap-2 w-full font-bold rounded-2xl active:scale-[0.98] transition-all disabled:opacity-50 ${
+        className={`flex items-center justify-center gap-2.5 w-full font-bold rounded-2xl active:scale-[0.97] transition-all disabled:opacity-50 ${
           size === 'lg'
-            ? 'py-4 text-base bg-[#0483F0] text-white'
-            : 'py-2.5 text-sm bg-[#EEF6FF] text-[#0483F0]'
+            ? 'py-4 text-[15px] text-white'
+            : 'py-2.5 text-[13px] bg-[#EEF6FF] text-[#0483F0]'
         }`}
+        style={size === 'lg' ? {
+          background: 'linear-gradient(135deg, #0483F0 0%, #0066CC 100%)',
+          boxShadow: '0 6px 20px -4px rgba(4, 131, 240, 0.3)',
+        } : undefined}
       >
         {isPlaying ? (
           <span className="flex gap-[3px] items-end h-4">
