@@ -12,19 +12,19 @@ function useHydrated() {
 const cats = [
   {
     title: '連結',
-    sub: 'Linking',
+    sub: '音がくっつく',
     desc: '音がつながって別の音に聞こえる',
     color: '#0483F0',
   },
   {
     title: '脱落',
-    sub: 'Elision',
+    sub: '音が消える',
     desc: '音が消えて聞こえなくなる',
     color: '#F0844C',
   },
   {
     title: '弱形',
-    sub: 'Weak Form',
+    sub: '音が弱くなる',
     desc: '音が弱くなって聞き取れない',
     color: '#8B5CF6',
   },
@@ -61,7 +61,7 @@ export default function IntroPage() {
       <div className="bg-[#042132] px-6 pt-14 pb-10 rounded-b-[32px]">
         <div className="animate-fade-in">
           <div className="inline-block px-3 py-1 rounded-full bg-white/10 text-[#48DE82] text-xs font-bold tracking-wider mb-4">
-            LISTENING CHECK
+            リスニング診断
           </div>
           <h1 className="text-[24px] font-black leading-[1.45] text-white mb-3">
             英語が聞き取れない

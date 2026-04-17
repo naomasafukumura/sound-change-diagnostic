@@ -52,7 +52,7 @@ export default function ResultPage() {
   return (
     <div className="animate-fade-in">
       <div className="bg-[#042132] px-5 pt-10 pb-12 rounded-b-[32px] text-center">
-        <p className="text-[11px] font-bold text-[#8FA3B8] uppercase tracking-widest mb-4">Your Result</p>
+        <p className="text-[11px] font-bold text-[#8FA3B8] tracking-widest mb-4">診断結果</p>
         <div className="relative inline-flex items-center justify-center w-36 h-36 mb-4">
           <svg className="absolute inset-0" viewBox="0 0 144 144">
             <circle cx="72" cy="72" r="62" fill="none" stroke="#ffffff10" strokeWidth="8" />

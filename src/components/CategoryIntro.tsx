@@ -8,14 +8,14 @@ interface CategoryIntroProps {
   onNext: () => void;
 }
 
-const categoryConfig: Record<string, { color: string; sub: string }> = {
-  linking: { color: '#0483F0', sub: 'Linking' },
-  elision: { color: '#F0844C', sub: 'Elision' },
-  weakForm: { color: '#8B5CF6', sub: 'Weak Form' },
+const categoryConfig: Record<string, { color: string }> = {
+  linking: { color: '#0483F0' },
+  elision: { color: '#F0844C' },
+  weakForm: { color: '#8B5CF6' },
 };
 
 export function CategoryIntroCard({ category, onNext }: CategoryIntroProps) {
-  const config = categoryConfig[category.category] || { color: '#0483F0', sub: '' };
+  const config = categoryConfig[category.category] || { color: '#0483F0' };
 
   return (
     <div className="animate-fade-in px-5 py-8">
@@ -28,7 +28,7 @@ export function CategoryIntroCard({ category, onNext }: CategoryIntroProps) {
         </div>
         <div>
           <h2 className="text-xl font-extrabold">{category.title}</h2>
-          <p className="text-[#8FA3B8] text-xs font-semibold">{config.sub} / {category.subtitle}</p>
+          <p className="text-[#8FA3B8] text-xs font-semibold">{category.subtitle}</p>
         </div>
       </div>
 
@@ -36,7 +36,7 @@ export function CategoryIntroCard({ category, onNext }: CategoryIntroProps) {
 
       <div className="rounded-2xl bg-[#F7F8FA] overflow-hidden mb-8">
         <div className="px-4 py-3 border-b border-[#EEF0F3]">
-          <p className="text-[11px] font-bold text-[#8FA3B8] uppercase tracking-wider">Example</p>
+          <p className="text-[11px] font-bold text-[#8FA3B8] tracking-wider">例文</p>
         </div>
         <div className="px-4 py-4">
           <p className="font-extrabold text-lg mb-3">{category.demoSentence}</p>

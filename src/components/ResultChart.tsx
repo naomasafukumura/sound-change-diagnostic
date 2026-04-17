@@ -7,9 +7,9 @@ interface ResultChartProps {
 }
 
 const config: { key: SoundChangeCategory; label: string; sub: string; color: string }[] = [
-  { key: 'linking', label: '連結', sub: 'Linking', color: '#0483F0' },
-  { key: 'elision', label: '脱落', sub: 'Elision', color: '#F0844C' },
-  { key: 'weakForm', label: '弱形', sub: 'Weak Form', color: '#8B5CF6' },
+  { key: 'linking', label: '連結', sub: '音がくっつく', color: '#0483F0' },
+  { key: 'elision', label: '脱落', sub: '音が消える', color: '#F0844C' },
+  { key: 'weakForm', label: '弱形', sub: '音が弱くなる', color: '#8B5CF6' },
 ];
 
 export function ResultChart({ scores }: ResultChartProps) {

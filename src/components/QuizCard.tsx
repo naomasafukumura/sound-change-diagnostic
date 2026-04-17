@@ -127,7 +127,7 @@ export function QuizCard({ question, onAnswer, onNext }: QuizCardProps) {
 
           <div className="rounded-2xl bg-[#F7F8FA] overflow-hidden">
             <div className="px-4 py-2.5 border-b border-[#EEF0F3]">
-              <p className="text-[11px] font-bold text-[#8FA3B8] uppercase tracking-wider">Sound Changes</p>
+              <p className="text-[11px] font-bold text-[#8FA3B8] tracking-wider">音声変化ポイント</p>
             </div>
             <div className="px-4 py-3 space-y-2">
               {question.soundChanges.map((sc, i) => (

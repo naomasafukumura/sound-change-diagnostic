@@ -12,17 +12,19 @@ export function AudioPlayer({ src, label = 'もう一度聞く', size = 'lg' }: 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const reset = () => setIsPlaying(false);
+
   const play = () => {
     const audio = audioRef.current;
     if (!audio) return;
     audio.currentTime = 0;
-    audio.play();
+    audio.play().catch(reset);
     setIsPlaying(true);
   };
 
   return (
     <div>
-      <audio ref={audioRef} src={src} onEnded={() => setIsPlaying(false)} preload="auto" />
+      <audio ref={audioRef} src={src} onEnded={reset} onError={reset} preload="auto" />
       <button
         onClick={play}
         disabled={isPlaying}
